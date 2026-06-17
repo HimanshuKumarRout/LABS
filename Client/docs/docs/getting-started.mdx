@@ -1,0 +1,42 @@
+# Getting Started
+
+Welcome to the LABS documentation site built with React, Vite, and MDX.
+
+## Quick Start
+
+Install dependencies:
+
+```bash
+npm install
+npm run dev
+```
+
+## Write Docs
+
+Create `.mdx` files under `docs/docs/` and add entries to `config/sidebar.json`.
+
+## Live Code Blocks
+
+Use the `jsx` or `react` language tag to get an interactive Sandpack editor:
+
+```react
+import { useState } from 'react'
+
+export default function Counter() {
+  const [count, setCount] = useState(0)
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(c => c + 1)}>+1</button>
+    </div>
+  )
+}
+```
+
+## Features
+
+-   **File-based routing** — MDX files in `docs/docs/` become pages
+-   **Sidebar config** — `config/sidebar.json` controls navigation
+-   **Dark mode** — Toggle via the header button (persisted to localStorage)
+-   **Local search** — Filter by title and route
+-   **Sandpack** — Live, editable React code blocks

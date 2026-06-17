@@ -1,0 +1,29 @@
+# Usage
+
+## Adding a Page
+
+1.  Create a `.mdx` file under `docs/docs/`. For example `docs/docs/api/overview.mdx`.
+2.  Add an entry to `config/sidebar.json`:
+
+```json
+{
+  "Getting Started": "/docs/getting-started",
+  "Guide": {
+    "Installation": "/docs/guide/installation",
+    "Usage": "/docs/guide/usage"
+  },
+  "API": {
+    "Overview": "/docs/api/overview"
+  }
+}
+```
+
+3.  The page is instantly available at `/docs/api/overview`.
+
+## Dynamic Routing
+
+The `DocPage` component uses Vite's `import.meta.glob` to discover all `.mdx` files under `docs/docs/`. Routes are matched by slug.
+
+## Live Code
+
+Fenced code blocks with the `react` or `jsx` language tag are rendered as interactive Sandpack editors.

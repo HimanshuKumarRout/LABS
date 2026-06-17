@@ -1,0 +1,7 @@
+{
+  "Getting Started": "/docs/getting-started",
+  "Guide": {
+    "Installation": "/docs/guide/installation",
+    "Usage": "/docs/guide/usage"
+  }
+}

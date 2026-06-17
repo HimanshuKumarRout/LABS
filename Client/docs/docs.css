@@ -1,0 +1,43 @@
+@reference "tailwindcss";
+
+/* MDX content typography — kept minimal since layout uses Tailwind */
+.mdx-h1 {
+  @apply text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4 tracking-tight;
+}
+.mdx-h2 {
+  @apply text-xl font-semibold text-gray-900 dark:text-gray-100 mt-8 mb-3 pb-1 border-b border-gray-200 dark:border-gray-800;
+}
+.mdx-h3 {
+  @apply text-lg font-semibold text-gray-900 dark:text-gray-100 mt-6 mb-2;
+}
+.mdx-p {
+  @apply mb-4 leading-relaxed;
+}
+.mdx-ul,
+.mdx-ol {
+  @apply mb-4 pl-6 space-y-1;
+}
+.mdx-ul {
+  @apply list-disc;
+}
+.mdx-ol {
+  @apply list-decimal;
+}
+.mdx-code {
+  @apply font-mono text-sm px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-100;
+}
+.mdx-pre {
+  @apply bg-gray-950 dark:bg-gray-900 rounded-xl p-4 overflow-x-auto text-sm leading-relaxed mb-4 border border-gray-800;
+}
+.mdx-pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+.mdx-a {
+  @apply text-indigo-600 dark:text-indigo-400 underline underline-offset-2 hover:text-indigo-700 dark:hover:text-indigo-300;
+}
+blockquote {
+  @apply mb-4 pl-4 py-2 border-l-4 border-indigo-500 bg-indigo-50/50 dark:bg-indigo-950/30 rounded-r-lg text-gray-700 dark:text-gray-300;
+}
+hr {
+  @apply border-t border-gray-200 dark:border-gray-800 my-8;
+}

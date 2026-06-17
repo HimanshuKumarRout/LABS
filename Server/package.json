@@ -1,0 +1,28 @@
+{
+  "name": "labs-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "lint": "eslint .",
+    "migrate:dev": "npx prisma migrate dev",
+    "migrate:deploy": "npx prisma migrate deploy",
+    "migrate:create": "npx prisma migrate dev --create-only",
+    "studio": "npx prisma studio",
+    "generate": "npx prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^9.26.0",
+    "eslint-plugin-import-x": "^4.16.2",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.19.3"
+  }
+}

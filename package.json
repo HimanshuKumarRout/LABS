@@ -1,0 +1,35 @@
+{
+  "name": "labs",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -n client,server -c cyan,green \"npm run dev:client\" \"npm run dev:server\"",
+    "dev:client": "npm run dev --prefix Client",
+    "dev:server": "npm run dev --prefix Server",
+    "build": "npm run build --prefix Client",
+    "lint": "npm run lint --prefix Client && npm run lint --prefix Server",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3"
+  },
+  "lint-staged": {
+    "Client/**/*.{js,jsx}": [
+      "prettier --write",
+      "Client/node_modules/.bin/eslint --config Client/eslint.config.js --fix"
+    ],
+    "Server/**/*.{js,mjs}": [
+      "prettier --write",
+      "Server/node_modules/.bin/eslint --config Server/eslint.config.js --fix"
+    ],
+    "*.{json,md,css}": [
+      "prettier --write"
+    ]
+  }
+}
