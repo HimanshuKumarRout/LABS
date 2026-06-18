@@ -61,7 +61,7 @@ File-based MDX docs with dark mode, local search, sidebar navigation, and live S
 
 ```bash
 git clone https://github.com/ChandrakantaMandal/LABS
-cd AI-Mentor-Updated
+cd LABS
 ```
 
 ### 2. Setup Backend
