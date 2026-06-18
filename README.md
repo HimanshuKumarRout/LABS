@@ -60,14 +60,14 @@ File-based MDX docs with dark mode, local search, sidebar navigation, and live S
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ChandrakantaMandal/LABS
-cd AI-Mentor-Updated
+git clone https://github.com/{yourusername}/LABS
+cd LABS
 ```
 
-### 2. Setup Backend
+### 2. Setup Server
 
 ```bash
-cd backend
+cd Server
 npm install
 cp .env.example .env
 # Fill in your database credentials and secrets in .env
@@ -76,10 +76,10 @@ npm run dev
 
 > See [`Server/README.md`](./Server/README.md) for full setup guide.
 
-### 3. Setup Frontend
+### 3. Setup Client
 
 ```bash
-cd frontend
+cd Client
 npm install
 cp .env.example .env
 # Fill in your credentials in .env
