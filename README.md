@@ -60,7 +60,7 @@ File-based MDX docs with dark mode, local search, sidebar navigation, and live S
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/ChandrakantaMandal/LABS
+git clone https://github.com/HimanshuKumarRout/LABS
 cd LABS
 ```
 
