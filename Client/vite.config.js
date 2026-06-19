@@ -7,4 +7,7 @@ import mdx from '@mdx-js/rollup'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), mdx(), tailwindcss(), babel({ presets: [reactCompilerPreset()] })],
+  build: {
+    minify: 'esbuild',
+  },
 })
