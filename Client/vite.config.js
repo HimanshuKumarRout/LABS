@@ -8,6 +8,6 @@ import mdx from '@mdx-js/rollup'
 export default defineConfig({
   plugins: [react(), mdx(), tailwindcss(), babel({ presets: [reactCompilerPreset()] })],
   build: {
-    minify: 'esbuild',
+    minify: false,
   },
 })
