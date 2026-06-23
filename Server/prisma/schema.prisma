@@ -7,4 +7,62 @@ datasource db {
   provider = "postgresql"
 }
 
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("STUDENT") // STUDENT, ADMIN
+  createdAt DateTime @default(now())
+  profile   Profile?
+  submissions Submission[]
+}
+
+model Profile {
+  id        String @id @default(uuid())
+  userId    String @unique
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badges    String[]
+  points    Int    @default(0)
+  completed String[] // List of completed DSA problem IDs or Course IDs
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  language    String   // C, C++, Python, Java
+  topics      Topic[]
+}
+
+model Topic {
+  id       String @id @default(uuid())
+  courseId String
+  course   Course @relation(fields: [courseId], references: [id])
+  title    String
+  content  String // Markdown or rich text content
+}
+
+model Problem {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  difficulty  String   // EASY, MEDIUM, HARD
+  tags        String[] // Array, DP, Graphs, etc.
+  testCases   Json     // Input/Output JSON
+  submissions Submission[]
+}
+
+model Submission {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  problemId String
+  problem   Problem  @relation(fields: [problemId], references: [id])
+  code      String
+  language  String
+  status    String   // ACCEPTED, WRONG_ANSWER, TIME_LIMIT_EXCEEDED, RUNTIME_ERROR
+  createdAt DateTime @default(now())
+}
+
 
