@@ -7,32 +7,59 @@ datasource db {
   provider = "postgresql"
 }
 
+enum Role {
+  STUDENT
+  ADMIN
+}
+
+enum Language {
+  C
+  CPP
+  PYTHON
+  JAVA
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum SubmissionStatus {
+  ACCEPTED
+  WRONG_ANSWER
+  TIME_LIMIT_EXCEEDED
+  RUNTIME_ERROR
+}
+
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
   name      String
-  role      String   @default("STUDENT") // STUDENT, ADMIN
+  role      Role     @default(STUDENT)
   createdAt DateTime @default(now())
   profile   Profile?
   submissions Submission[]
 }
 
 model Profile {
-  id        String @id @default(uuid())
-  userId    String @unique
-  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  badges    String[]
-  points    Int    @default(0)
-  completed String[] // List of completed DSA problem IDs or Course IDs
+  id                String                    @id @default(uuid())
+  userId            String                    @unique
+  user              User                      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badges            String[]
+  points            Int                       @default(0)
+  completedProblems ProfileCompletedProblem[]
+  completedCourses  ProfileCompletedCourse[]
 }
 
 model Course {
-  id          String   @id @default(uuid())
+  id          String                   @id @default(uuid())
   title       String
   description String
-  language    String   // C, C++, Python, Java
+  language    Language
   topics      Topic[]
+  completedBy ProfileCompletedCourse[]
 }
 
 model Topic {
@@ -41,16 +68,19 @@ model Topic {
   course   Course @relation(fields: [courseId], references: [id])
   title    String
   content  String // Markdown or rich text content
+
+  @@index([courseId])
 }
 
 model Problem {
-  id          String   @id @default(uuid())
+  id          String                    @id @default(uuid())
   title       String
   description String
-  difficulty  String   // EASY, MEDIUM, HARD
+  difficulty  Difficulty
   tags        String[] // Array, DP, Graphs, etc.
-  testCases   Json     // Input/Output JSON
+  testCases   Json                      // Input/Output JSON
   submissions Submission[]
+  completedBy ProfileCompletedProblem[]
 }
 
 model Submission {
@@ -60,9 +90,30 @@ model Submission {
   problemId String
   problem   Problem  @relation(fields: [problemId], references: [id])
   code      String
-  language  String
-  status    String   // ACCEPTED, WRONG_ANSWER, TIME_LIMIT_EXCEEDED, RUNTIME_ERROR
+  language  Language
+  status    SubmissionStatus
   createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([problemId])
+}
+
+model ProfileCompletedProblem {
+  profileId String
+  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  problemId String
+  problem   Problem  @relation(fields: [problemId], references: [id], onDelete: Cascade)
+
+  @@id([profileId, problemId])
+}
+
+model ProfileCompletedCourse {
+  profileId String
+  profile   Profile  @relation(fields: [profileId], references: [id], onDelete: Cascade)
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@id([profileId, courseId])
 }
 
 

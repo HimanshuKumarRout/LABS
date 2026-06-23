@@ -79,7 +79,7 @@ npm run dev
 ### 3. Setup Client
 
 ```bash
-cd Client
+cd ../Client
 npm install
 npm run dev
 ```
