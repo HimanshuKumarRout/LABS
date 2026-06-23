@@ -69,8 +69,8 @@ cd LABS
 ```bash
 cd Server
 npm install
-# Note: In Prisma 7, connection URLs have moved to prisma.config.ts.
-# Simply create/edit Server/.env and verify it contains your DATABASE_URL.
+cp .env.example .env
+# Fill in your database credentials and secrets in .env
 npm run dev
 ```
 
@@ -80,7 +80,10 @@ npm run dev
 
 ```bash
 cd ../Client
+cd Client
 npm install
+cp .env.example .env
+# Fill in credentials in .env
 npm run dev
 ```
 
