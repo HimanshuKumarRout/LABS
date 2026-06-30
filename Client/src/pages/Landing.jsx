@@ -18,6 +18,7 @@ import {
   LayoutDashboard,
   BookOpen,
 } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 export default function Landing() {
   useEffect(() => {
@@ -84,9 +85,11 @@ export default function Landing() {
             <button className="text-[#c7c4d8] hover:bg-slate-700/50 p-2 rounded-full transition-colors active:scale-95 duration-150">
               <Bell className="w-5 h-5" />
             </button>
-            <button className="bg-[#4f46e5] text-white px-6 py-2 rounded-lg text-sm font-medium hover:scale-[0.98] transition-transform active:scale-95">
-              Get Started
-            </button>
+            <Link to="/login">
+              <button className="bg-[#4f46e5] text-white px-6 py-2 rounded-lg text-sm font-medium hover:scale-[0.98] transition-transform active:scale-95">
+                Get Started
+              </button>
+            </Link>
           </div>
         </div>
       </header>

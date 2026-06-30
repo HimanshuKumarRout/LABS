@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
-import { Mail, Lock, ArrowRight, User } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { Mail, Lock, ArrowRight } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../../store/authStore'
 
-function Register() {
+function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [name, setName] = useState('')
+  const navigate = useNavigate()
+  const { login, loading, error } = useAuthStore()
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault()
-    console.log('Logging in with:', { email, password })
+
+    const res = await login({ email, password })
+
+    if (res) {
+      navigate('/dashboard')
+    }
   }
 
   return (
@@ -34,26 +41,6 @@ function Register() {
 
         {/* Form Container */}
         <form onSubmit={handleLogin} className="flex flex-col gap-4">
-          {/* Name input field wrapper  */}
-          <div className="flex flex-col gap-1.5">
-            <label className="text-[11px] font-semibold text-[#94a3b8] tracking-[0.5px] uppercase">
-              Name
-            </label>
-            <div className="relative flex items-center group">
-              <User
-                className="absolute left-[14px] text-[#94a3b8] transition-colors duration-300 group-focus-within:text-[#6366f1]"
-                size={18}
-              />
-              <input
-                type="text"
-                placeholder="Enter Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                className="w-full bg-[#060913] border border-[#1e293b] rounded-v10 pl-[42px] pr-4 py-3 text-sm text-white outline-none box-border transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-xl focus:border-[#6366f1] focus:bg-[#090e1e] focus:shadow-[0_0_15px_rgba(99,102,241,0.25)]"
-              />
-            </div>
-          </div>
           {/* Email input field wrapper */}
           <div className="flex flex-col gap-1.5">
             <label className="text-[11px] font-semibold text-[#94a3b8] tracking-[0.5px] uppercase">
@@ -111,7 +98,7 @@ function Register() {
             type="submit"
             className="group/btn bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white border-none py-3 px-4 rounded-xl text-[14.5px] font-bold cursor-pointer flex items-center justify-center gap-2 shadow-[0_8px_24px_rgba(99,102,241,0.4)] transition-all duration-300 hover:-translate-y-[2px] hover:shadow-[0_12px_28px_rgba(99,102,241,0.55)]"
           >
-            <span>Register</span>
+            <span>Login</span>
             <ArrowRight
               size={16}
               className="transition-transform duration-300 group-hover/btn:translate-x-[3px]"
@@ -122,12 +109,12 @@ function Register() {
         {/* Card Footer Links */}
         <div className="mt-6 pt-5 border-t border-[#1e293b] text-center">
           <p className="text-sm text-[#94a3b8]">
-            Already have an account?{' '}
+            Don’t have an account?{' '}
             <Link
-              to="/login"
+              to="/register"
               className="inline-flex items-center font-semibold text-[#818cf8] hover:text-[#a5b4fc] transition-all duration-300 hover:underline"
             >
-              Login
+              Register
             </Link>
           </p>
         </div>
@@ -136,4 +123,4 @@ function Register() {
   )
 }
 
-export default Register
+export default Login
