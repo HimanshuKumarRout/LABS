@@ -405,9 +405,12 @@ export default function Landing() {
               Join thousands of students and start building with the power of AI today.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <button className="bg-[#4f46e5] text-white px-10 py-4 rounded-lg text-2xl font-semibold hover:scale-[0.98] transition-transform active:scale-95">
+              <Link
+                to="/login"
+                className="bg-[#4f46e5] text-white px-10 py-4 rounded-lg text-2xl font-semibold hover:scale-[0.98] transition-transform active:scale-95 inline-flex items-center justify-center"
+              >
                 Create Free Account
-              </button>
+              </Link>
               <button className="px-10 py-4 rounded-lg bg-[#171f33] border border-slate-700 text-2xl font-semibold hover:bg-[#2d3449] transition-colors active:scale-95">
                 Contact Enterprise
               </button>
